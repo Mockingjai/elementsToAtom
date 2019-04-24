@@ -24,22 +24,21 @@ class App extends Component {
       })
     }
   }
-  clicked = 0;
   addElementProton = () => {
     this.setState({
-      protonValue: this.clicked += 1,
+      protonValue: this.state.protonValue += 1,
     });
     this.props.addProton(this.state.protonValue);
   };
   addElementNeutron = () => {
     this.setState({
-      neutronValue: this.clicked += 1,
+      neutronValue: this.state.neutronValue += 1,
     });
     this.props.addNeutron(this.state.neutronValue);
   };
   addElementElectron = () => {
     this.setState({
-      electronValue: this.clicked += 1,
+      electronValue: this.state.electronValue += 1,
     });
     this.props.addElectron(this.state.electronValue);
   };
@@ -87,8 +86,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   addProton: (value) => dispatch(func.addProton(value)),
-  addNeutron: (val) => dispatch(func.addNeutron(val)),
-  addElectron: (v) => dispatch(func.addElectron(v)),
+  addNeutron: (value) => dispatch(func.addNeutron(value)),
+  addElectron: (value) => dispatch(func.addElectron(value)),
   transformValues: () => dispatch(func.transformValues()),
 });
 
