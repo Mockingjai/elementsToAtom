@@ -6,9 +6,9 @@ import * as func from './actions/actions';
 class App extends Component {
 
   state = {
-    value1: '',
-    value2: '',
-    value3: '',
+    protonValue: 0,
+    neutronValue: 0,
+    electronValue: 0,
   };
 
   componentDidUpdate(prevProps) {
@@ -17,60 +17,27 @@ class App extends Component {
         && this.props.ourState.E !== prevProps.ourState.E
     ) {
       this.setState({
-        value1: this.props.ourState.P,
-        value2: this.props.ourState.N,
-        value3: this.props.ourState.E
+        protonValue: this.props.ourState.P,
+        neutronValue: this.props.ourState.N,
+        electronValue: this.props.ourState.E
       })
     }
   }
 
-  getValue1 = (e) => {
-    this.setState({
-      value1: e.target.value
-    })
-  };
-
-  getValue2 = (e) => {
-    this.setState({
-      value2: e.target.value
-    })
-  };
-
-  getValue3 = (e) => {
-    this.setState({
-      value3: e.target.value
-    })
-  };
-
-
   render() {
-    console.log(this.props.ourState.P)
+    console.log(this.props.ourState.P);
+    const {protonValue,neutronValue,electronValue} = this.state;
     return (
         <div className="main">
           <div className="left">
             <div>
-              <input
-                  type="text"
-                  onChange={this.getValue1}
-                  value={this.state.value1}
-              />
-              <button onClick={this.props.addProton.bind(null, this.state.value1)}>Get Proton</button>
+              <button onClick={this.props.addProton.bind(null, protonValue)}>Get Proton</button>
             </div>
             <div>
-              <input
-                  type="text"
-                  onChange={this.getValue2}
-                  value={this.state.value2}
-              />
-              <button onClick={this.props.addNeitron.bind(null, this.state.value2)}>Get Neitron</button>
+              <button onClick={this.props.addNeutron.bind(null, neutronValue)}>Get Neutron</button>
             </div>
             <div>
-              <input
-                  type="text"
-                  onChange={this.getValue3}
-                  value={this.state.value3}
-              />
-              <button onClick={this.props.addElectron.bind(null, this.state.value3)}>Get Electron</button>
+              <button onClick={this.props.addElectron.bind(null, electronValue)}>Get Electron</button>
             </div>
           </div>
           <div className="middle">
@@ -97,9 +64,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addProton: (p) => dispatch(func.addProton(p)),
-  addNeitron: (n) => dispatch(func.addNeitron(n)),
-  addElectron: (e) => dispatch(func.addElectron(e)),
+  addProton: () => dispatch(func.addProton()),
+  addNeutron: () => dispatch(func.addNeutron()),
+  addElectron: () => dispatch(func.addElectron()),
   transformValues: () => dispatch(func.transformValues()),
 });
 

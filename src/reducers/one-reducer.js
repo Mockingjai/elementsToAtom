@@ -17,7 +17,7 @@ const createAtom = (state = initialState, action) => {
     case constants.ADD_NEITRON:
       return {
         ...state,
-        N: action.createNeitron,
+        N: action.addNeutron,
       };
     case constants.ADD_ELECTRON:
       return {

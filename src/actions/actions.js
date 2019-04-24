@@ -5,9 +5,9 @@ const addProton = (createProton) => ({
   createProton: createProton
 });
 
-const addNeitron = (createNeitron) => ({
+const addNeutron = (createNeutron) => ({
   type: constants.ADD_NEITRON,
-  createNeitron: createNeitron
+  createNeutron: createNeutron
 });
 
 const addElectron = (createElectron) => ({
@@ -20,4 +20,4 @@ const transformValues = () => ({
 });
 
 
-export {addProton, addNeitron, addElectron, transformValues};
+export {addProton, addNeutron, addElectron, transformValues};
