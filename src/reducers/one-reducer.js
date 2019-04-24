@@ -1,9 +1,9 @@
 import * as constants from '../actions/const';
 
 const initialState = {
-  P: '',
-  N: '',
-  E: '',
+  P: 0,
+  N: 0,
+  E: 0,
   A: 0
 };
 
@@ -17,7 +17,7 @@ const createAtom = (state = initialState, action) => {
     case constants.ADD_NEITRON:
       return {
         ...state,
-        N: action.addNeutron,
+        N: action.createNeutron,
       };
     case constants.ADD_ELECTRON:
       return {

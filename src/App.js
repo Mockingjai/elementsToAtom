@@ -4,13 +4,14 @@ import {connect} from "react-redux";
 import * as func from './actions/actions';
 
 class App extends Component {
-
-  state = {
-    protonValue: 0,
-    neutronValue: 0,
-    electronValue: 0,
-  };
-
+  constructor(props){
+    super(props);
+    this.state = {
+      protonValue: 0,
+      neutronValue: 0,
+      electronValue: 0,
+    };
+  }
   componentDidUpdate(prevProps) {
     if (this.props.ourState.P !== prevProps.ourState.P
         && this.props.ourState.N !== prevProps.ourState.N
@@ -23,21 +24,42 @@ class App extends Component {
       })
     }
   }
+  clicked = 0;
+  addElementProton = () => {
+    this.setState({
+      protonValue: this.clicked += 1,
+    });
+    this.props.addProton(this.state.protonValue);
+  };
+  addElementNeutron = () => {
+    this.setState({
+      neutronValue: this.clicked += 1,
+    });
+    this.props.addNeutron(this.state.neutronValue);
+  };
+  addElementElectron = () => {
+    this.setState({
+      electronValue: this.clicked += 1,
+    });
+    this.props.addElectron(this.state.electronValue);
+  };
 
   render() {
     console.log(this.props.ourState.P);
-    const {protonValue,neutronValue,electronValue} = this.state;
     return (
         <div className="main">
           <div className="left">
             <div>
-              <button onClick={this.props.addProton.bind(null, protonValue)}>Get Proton</button>
+              <button onClick={this.addElementProton}>Get Proton</button>
+              <span>{this.props.ourState.P}</span>
             </div>
             <div>
-              <button onClick={this.props.addNeutron.bind(null, neutronValue)}>Get Neutron</button>
+              <button onClick={this.addElementNeutron}>Get Neutron</button>
+              <span>{this.props.ourState.N}</span>
             </div>
             <div>
-              <button onClick={this.props.addElectron.bind(null, electronValue)}>Get Electron</button>
+              <button onClick={this.addElementElectron}>Get Electron</button>
+              <span>{this.props.ourState.E}</span>
             </div>
           </div>
           <div className="middle">
@@ -64,9 +86,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addProton: () => dispatch(func.addProton()),
-  addNeutron: () => dispatch(func.addNeutron()),
-  addElectron: () => dispatch(func.addElectron()),
+  addProton: (value) => dispatch(func.addProton(value)),
+  addNeutron: (val) => dispatch(func.addNeutron(val)),
+  addElectron: (v) => dispatch(func.addElectron(v)),
   transformValues: () => dispatch(func.transformValues()),
 });
 
