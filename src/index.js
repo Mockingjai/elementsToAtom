@@ -4,10 +4,10 @@ import './index.css';
 import App from './App';
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import createAtom from './reducers/one-reducer';
+import rootReducer from './reducers/rootReducer';
 
 const store = createStore(
-    createAtom,
+    rootReducer,
     window.devToolsExtension && window.devToolsExtension()
 );
 
